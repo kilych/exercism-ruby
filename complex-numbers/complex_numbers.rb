@@ -8,6 +8,20 @@ class ComplexNumber
     @imag = imaginary
   end
 
+  def magnitude
+    return @real.abs if @imag == 0
+    return @imag.abs if @real == 0
+    Math.sqrt(@real ** 2 + @imag ** 2)
+  end
+
+  def angle
+    if @real == 0
+      (@imag <=> 0) * Rational(Math::PI, 2)
+    else
+      Math.atan(@imag / @real)
+    end
+  end
+
   def ==(z)
     @real == z.real && @imag == z.imag
   end

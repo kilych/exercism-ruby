@@ -1,10 +1,46 @@
 require 'minitest/autorun'
 require_relative 'complex_numbers'
 
-# Common test data version: 1.0.0 '117d062'
-class ComplexNumberTest < Minitest::Test
-  def test_imaginary_unit
+# Common test data version: 1.3.0 1e1c9ca
+class ComplexNumbersTest < Minitest::Test
+  def test_real_part_of_a_purely_real_number
     # skip
+    expected = 1
+    assert_equal expected, ComplexNumber.new(1, 0).real
+  end
+
+  def test_real_part_of_a_purely_imaginary_number
+    skip
+    expected = 0
+    assert_equal expected, ComplexNumber.new(0, 1).real
+  end
+
+  def test_real_part_of_a_number_with_real_and_imaginary_part
+    skip
+    expected = 1
+    assert_equal expected, ComplexNumber.new(1, 2).real
+  end
+
+  def test_imaginary_part_of_a_purely_real_number
+    skip
+    expected = 0
+    assert_equal expected, ComplexNumber.new(1, 0).imaginary
+  end
+
+  def test_imaginary_part_of_a_purely_imaginary_number
+    skip
+    expected = 1
+    assert_equal expected, ComplexNumber.new(0, 1).imaginary
+  end
+
+  def test_imaginary_part_of_a_number_with_real_and_imaginary_part
+    skip
+    expected = 2
+    assert_equal expected, ComplexNumber.new(1, 2).imaginary
+  end
+
+  def test_imaginary_unit
+    skip
     expected = ComplexNumber.new(-1, 0)
     assert_equal expected, ComplexNumber.new(0, 1) * ComplexNumber.new(0, 1)
   end
@@ -129,43 +165,7 @@ class ComplexNumberTest < Minitest::Test
     assert_equal expected, ComplexNumber.new(1, 1).conjugate
   end
 
-  def test_real_part_of_a_purely_real_number
-    skip
-    expected = 1
-    assert_equal expected, ComplexNumber.new(1, 0).real
-  end
-
-  def test_real_part_of_a_purely_imaginary_number
-    skip
-    expected = 0
-    assert_equal expected, ComplexNumber.new(0, 1).real
-  end
-
-  def test_real_part_of_a_number_with_real_and_imaginary_part
-    skip
-    expected = 1
-    assert_equal expected, ComplexNumber.new(1, 2).real
-  end
-
-  def test_imaginary_part_of_a_purely_real_number
-    skip
-    expected = 0
-    assert_equal expected, ComplexNumber.new(1, 0).imaginary
-  end
-
-  def test_imaginary_part_of_a_purely_imaginary_number
-    skip
-    expected = 1
-    assert_equal expected, ComplexNumber.new(0, 1).imaginary
-  end
-
-  def test_imaginary_part_of_a_number_with_real_and_imaginary_part
-    skip
-    expected = 2
-    assert_equal expected, ComplexNumber.new(1, 2).imaginary
-  end
-
-  def test_eulers_identityformula
+  def test_eulers_identity_formula
     skip
     expected = ComplexNumber.new(-1, 0)
     assert_equal expected, ComplexNumber.new(0, Math::PI).exp
@@ -183,25 +183,9 @@ class ComplexNumberTest < Minitest::Test
     assert_equal expected, ComplexNumber.new(1, 0).exp
   end
 
-  # Problems in exercism evolve over time, as we find better ways to ask
-  # questions.
-  # The version number refers to the version of the problem you solved,
-  # not your solution.
-  #
-  # Define a constant named VERSION inside of the top level BookKeeping
-  # module, which may be placed near the end of your file.
-  #
-  # In your file, it will look like this:
-  #
-  # module BookKeeping
-  #   VERSION = 1 # Where the version number matches the one in the test.
-  # end
-  #
-  # If you are curious, read more about constants on RubyDoc:
-  # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
-
-  def test_bookkeeping
+  def test_exponential_of_a_number_with_real_and_imaginary_part
     skip
-    assert_equal 1, BookKeeping::VERSION
+    expected = ComplexNumber.new(-2, 0)
+    assert_equal expected, ComplexNumber.new(Math.log(2), Math::PI).exp
   end
 end

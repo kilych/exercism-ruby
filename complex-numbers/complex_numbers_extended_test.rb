@@ -1,13 +1,9 @@
-require_relative 'complex_numbers_test'
-# OR:
-# require 'minitest/autorun'
-# require_relative 'complex_numbers'
-# run multiple tests:
-# $ for file in complex_numbers/*.rb; do ruby -I lib -r disable_skip -r minitest/pride $file; done 
+require 'minitest/autorun'
+require_relative 'complex_numbers'
 
 require 'matrix'
 
-class ComplexNumberExtendedTest < Minitest::Test
+class ComplexNumbersExtendedTest < Minitest::Test
   def test_magnitude_of_a_purely_real_number
     expected = 3
     assert_equal expected, ComplexNumber.new(3, 0).magnitude

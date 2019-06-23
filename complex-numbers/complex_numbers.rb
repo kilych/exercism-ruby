@@ -2,36 +2,36 @@ class ComplexNumber
   attr_reader :real, :imag
 
   alias_method :imaginary, :imag
-    
+
   def initialize(real, imaginary)
     @real = real
     @imag = imaginary
   end
 
   def magnitude
-    return @real.abs if @imag == 0
-    return @imag.abs if @real == 0
-    Math.sqrt(@real ** 2 + @imag ** 2)
+    return real.abs if imag == 0
+    return imag.abs if real == 0
+    Math.sqrt(real ** 2 + imag ** 2)
   end
 
   def angle
-    if @real == 0
-      (@imag <=> 0) * Rational(Math::PI, 2)
+    if real == 0
+      (imag <=> 0) * Rational(Math::PI, 2)
     else
-      Math.atan(@imag / @real)
+      Math.atan(imag / real)
     end
   end
 
   def ==(z)
-    @real == z.real && @imag == z.imag
+    real == z.real && imag == z.imag
   end
 
   def +(z)
-    ComplexNumber.new(@real + z.real, @imag + z.imag)
+    ComplexNumber.new(real + z.real, imag + z.imag)
   end
 
   def -(z)
-    self.class.new(@real - z.real, @imag - z.imag)
+    self.class.new(real - z.real, imag - z.imag)
   end
 
   def *(z)
@@ -47,15 +47,15 @@ class ComplexNumber
   end
 
   def conjugate
-    self.class.new(@real, -@imag)
+    self.class.new(real, -imag)
   end
 
   def abs
-    Math.sqrt(@real ** 2 + @imag ** 2)
+    Math.sqrt(real ** 2 + imag ** 2)
   end
 
   def exp
-    unit = case @imag
+    unit = case imag
            when 0, 2 * Math::PI # cause Math.sin(Math::PI) != 0
              self.class.new(1, 0)
            when 0.5 * Math::PI
@@ -65,9 +65,9 @@ class ComplexNumber
            when 1.5 * Math::PI
              self.class.new(0, -1)
            else
-             self.class.new(Math.cos(@imag), Math.sin(@imag))
+             self.class.new(Math.cos(imag), Math.sin(imag))
            end
-    unit * Math.exp(@real)
+    unit * Math.exp(real)
   end
 
   def coerce(other)
@@ -75,7 +75,7 @@ class ComplexNumber
     when Complex
       [self.class.new(other.real, other.imag), self]
     when Integer, Float
-      return other, @real if @imag == 0
+      return other, real if imag == 0
       [self.class.new(other, 0), self]
     else
       raise TypeError, "#{self.class} can't be coerced into #{other.class}"

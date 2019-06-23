@@ -1,9 +1,10 @@
-### Test
+### Run tests
 
-`$ cd <path/to/project>`
+#### Run single test
 
-`$ ruby -I lib -r disable_skip -r minitest/pride <test_file>`
+`$> cd <path/to/project>`
+`$> ruby -I lib -r disable_skip -r minitest/pride <exercise_dir>/<test_file>`
 
-run all tests:
+#### Run all tests
 
-`$ for file in */*test.rb; do ruby -I lib -r disable_skip -r minitest/pride $file; done`
+`$> for file in */*test.rb; do ruby -I lib -r disable_skip -r minitest/pride $file; done`
